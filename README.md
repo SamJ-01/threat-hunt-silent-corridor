@@ -2,7 +2,7 @@
 
 **Role:** Lead investigator (solo hunt) · **Environment:** Azure Log Analytics (LAW-SilentCorridor), multi-host enterprise lab
 **Tooling:** KQL, Sysmon telemetry, Windows Event Logs · **Framework:** MITRE ATT&CK, PEAK
-**Deliverables:** [Master Incident Report](./report/) · [KQL query set](./queries/) · [IOC list](./iocs.md) · [Hunt tracker](./tracker/)
+**Deliverables:** master incident report · KQL query set · IOC list · hunt tracker (not yet published in this repository)
 
 ## Summary
 
@@ -37,7 +37,7 @@ full timeline reconstruction.
 
 ## Detection Engineering Output
 
-Detections proposed from this hunt (implemented in [kql-detection-library](https://github.com/SamJ-01/kql-detection-library)):
+Detections proposed from this hunt (documented in [kql-detection-library](https://github.com/SamJ-01/kql-detection-library) as they are published):
 certutil -encode usage · WMIC remote execution · wevtutil log clearing ·
 portproxy configuration changes · Compress-Archive on sensitive paths ·
 large POST to newly-observed domains.
