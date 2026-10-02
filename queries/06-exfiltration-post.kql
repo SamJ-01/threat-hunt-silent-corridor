@@ -1,0 +1,11 @@
+// 06 - Exfiltration: Invoke-WebRequest POST
+// Source   : rewritten after the challenge from the commands in report/incident-report.md,
+//            to show how this stage can be surfaced. Uses only the columns confirmed
+//            in my original query (TimeGenerated, DeviceName, ProcessCommandLine).
+// Finds    : the upload of the encoded archive to cdn-telemetry.cloud-endpoint.net.
+// Library  : kql-detection-library/detections/exfiltration/post-to-new-domain.kql
+// Lab scope: LOG(N) Pacific Silent Corridor training scenario; all values are synthetic.
+SilentCorridorX_CL
+| where ProcessCommandLine has "Invoke-WebRequest" and ProcessCommandLine has "post"
+| extend Destination = extract(@'(?i)-Uri\s+"?(https?://[^\s"]+)', 1, ProcessCommandLine)
+| project TimeGenerated, DeviceName, Destination, ProcessCommandLine

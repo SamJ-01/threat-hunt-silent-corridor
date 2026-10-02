@@ -1,0 +1,7 @@
+// 01 - Reconnaissance: systeminfo
+// Source   : copied from my original notes (the query I ran during the challenge).
+// Surfaced : system information gathering after initial access on WS-ENG04.
+// Lab scope: LOG(N) Pacific Silent Corridor training scenario; all values are synthetic.
+SilentCorridorX_CL
+| where ProcessCommandLine has "systeminfo"
+| project TimeGenerated, DeviceName, ProcessCommandLine

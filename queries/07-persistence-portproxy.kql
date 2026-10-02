@@ -1,0 +1,10 @@
+// 07 - Persistence: netsh portproxy
+// Source   : rewritten after the challenge from the commands in report/incident-report.md,
+//            to show how this stage can be surfaced. Uses only the columns confirmed
+//            in my original query (TimeGenerated, DeviceName, ProcessCommandLine).
+// Finds    : the rule forwarding 0.0.0.0:8443 to SRV-DC01.haldric.local:445.
+// Library  : kql-detection-library/detections/command-and-control/netsh-portproxy.kql
+// Lab scope: LOG(N) Pacific Silent Corridor training scenario; all values are synthetic.
+SilentCorridorX_CL
+| where ProcessCommandLine has "portproxy"
+| project TimeGenerated, DeviceName, ProcessCommandLine
