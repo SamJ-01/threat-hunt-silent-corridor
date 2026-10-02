@@ -1,0 +1,13 @@
+// 03 - Lateral movement: WMIC remote execution
+// Source   : rewritten after the challenge from the commands in report/incident-report.md,
+//            to show how this stage can be surfaced. Uses only the columns confirmed
+//            in my original query (TimeGenerated, DeviceName, ProcessCommandLine).
+// Finds    : wmic run against another host (/node:). On the target hosts the same
+//            activity appears as processes started by WmiPrvSE.exe.
+// Library  : kql-detection-library/detections/lateral-movement/wmic-remote-execution.kql
+// Lab scope: LOG(N) Pacific Silent Corridor training scenario; all values are synthetic.
+SilentCorridorX_CL
+| where ProcessCommandLine has "wmic"
+| extend RemoteHost = extract(@'/node:\s*"?([^\s"]+)', 1, ProcessCommandLine)
+| project TimeGenerated, DeviceName, RemoteHost, ProcessCommandLine
+| order by TimeGenerated asc

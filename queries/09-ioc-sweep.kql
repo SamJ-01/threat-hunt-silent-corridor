@@ -1,0 +1,13 @@
+// 09 - IOC sweep: every command line mentioning a known indicator
+// Source   : rewritten after the challenge from the commands in report/incident-report.md,
+//            to show how this stage can be surfaced. Uses only the columns confirmed
+//            in my original query (TimeGenerated, DeviceName, ProcessCommandLine).
+// Finds    : all activity linked to the IOCs in iocs.md, in time order, giving a
+//            single timeline of the intrusion across hosts.
+// Lab scope: LOG(N) Pacific Silent Corridor training scenario; all values are synthetic.
+let IOCs = dynamic(["McAfee_Logs", "win_update_kb5034", "cdn-telemetry.cloud-endpoint.net",
+                    "A400M_NavSys", "portproxy", "ntds.dit", "s.brandt", "m.richter"]);
+SilentCorridorX_CL
+| where ProcessCommandLine has_any (IOCs)
+| project TimeGenerated, DeviceName, ProcessCommandLine
+| order by TimeGenerated asc

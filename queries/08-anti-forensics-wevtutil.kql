@@ -1,0 +1,10 @@
+// 08 - Anti-forensics: event log cleared
+// Source   : rewritten after the challenge from the commands in report/incident-report.md,
+//            to show how this stage can be surfaced. Uses only the columns confirmed
+//            in my original query (TimeGenerated, DeviceName, ProcessCommandLine).
+// Finds    : wevtutil cl Security on the domain controller.
+// Library  : kql-detection-library/detections/defense-evasion/wevtutil-log-clearing.kql
+// Lab scope: LOG(N) Pacific Silent Corridor training scenario; all values are synthetic.
+SilentCorridorX_CL
+| where ProcessCommandLine has "wevtutil" and ProcessCommandLine matches regex @"(?i)\s(cl|clear-log)\s"
+| project TimeGenerated, DeviceName, ProcessCommandLine
