@@ -1,5 +1,7 @@
 # Operation Silent Corridor — Threat Hunt Challenge Write-up
 
+![Operation Silent Corridor: the reconstructed eight-phase attack chain, ATT&CK-mapped](docs/social-preview.png)
+
 **Context:** LOG(N) Pacific weekly threat-hunt challenge · **My role:** participant
 **Environment:** Azure Log Analytics (LAW-SilentCorridor), multi-host lab · **Tooling:** KQL, Sysmon telemetry, Windows Event Logs · **Framework:** MITRE ATT&CK
 **In this repo:** [Incident report](report/incident-report.md) · [KQL queries](queries/) · [IOC list](iocs.md)
